@@ -3,7 +3,7 @@
 	<Product Id="{8ED04405-06EB-47C4-99F2-F132E46AC683}" Language="1033" Manufacturer="Applied Materials Inc." Name="WaferVision" UpgradeCode="{8ED04405-06EB-47c4-99F2-F132E46AC683}" Version="1.0.33.1">
       <Package Compressed="yes" Description="WaferVision" InstallerVersion="500" Keywords="WaferVision,MSI,Installer" Languages="1033" Manufacturer="Applied Materials Inc." Platform="x86" />
     
-
+    <!--testing the commit for git hub-->
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
 		<MediaTemplate EmbedCab="yes" />
     <Media Id="2" Cabinet="RES.CAB" EmbedCab="yes" />
