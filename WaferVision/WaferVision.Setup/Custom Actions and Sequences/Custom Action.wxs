@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+
+    <Property Id="CUSTOMACTIONS" Value="1"/>
+    
+    <CustomAction Id="BROWSE_FEATURES" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_BrowseForFeatures" />
+    <CustomAction Id="CGAINST_CHECKRT" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_CheckRT" />
+    <CustomAction Id="BACKUP_PREV_VERSION" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_BackupPrevVersion" Return="ignore" />
+    <CustomAction Id="BASELINE_CLEANUP_SECTION" Property="CGA_CLEANUPSECTION_STARTED" Value="1" />
+    <CustomAction Id="BASELINE_INIT_SECTION" Property="CGA_INITSECTION_STARTED" Value="1" />
+    <CustomAction Id="BASELINE_NESTEDINSTALL_SECTION" Property="CGA_NESTEDINSTALLSECTION_STARTED" Value="1" />
+    <CustomAction Id="BASELINE_POSTINSTALL_SECTION" Property="CGA_POSTINSTALLSECTION_STARTED" Value="1" />
+    <CustomAction Id="BASELINE_PREINSTALL_SECTION" Property="CGA_PREINSTALLSECTION_STARTED" Value="1" />
+    <CustomAction Id="BASELINE_STARTUP_SECTION" Property="CGA_STARTUPSECTION_STARTED" Value="1" />
+    <CustomAction Id="CHECK_FEATURES" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_CheckFeaturesIni" />
+    <CustomAction Id="CHECK_FEONLYVERSION" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_FEOnlyVerifyInstallVersion" />
+    <CustomAction Id="COMPLETE_FEONLY_INSTALL" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_FEOnlyInstallation" />
+    <CustomAction Id="COMPLETE_RT_INSTALL" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_CompleteRTInstallation" />
+    <CustomAction Id="CREATE_SHUTDOWN_TASK" Directory="TARGETDIR" ExeCommand="schtasks /create /f /tn amatshtdn /sc once /st 00:00 /s [RT_CTRL_NAME] [RT_USER_LOGIN] /ru &quot;System&quot; /tr &quot;[RT_SHUTDOWN_CMD]&quot;" Return="ignore" />
+    <CustomAction Id="EXPAND_CGA_PROPS" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_FormatProps" />
+    <CustomAction Id="FIND_BASELINES" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_FindBaselines" />
+    <CustomAction Id="FIND_OLD_VERSIONS" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_FindOldVersions" />
+    <CustomAction Id="PREPARE_RT_INSTALL" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_PrepareRTInstallation" />
+    <CustomAction Id="READ_RT_USER_DATA" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_ReadRTUserData" />
+    <CustomAction Id="READ_TOOLID" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_ReadToolID" />
+    <CustomAction Id="RESTORE_OLD_VERSION" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_RestoreOldVersion" Return="ignore" />
+    <CustomAction Id="SAVE_LAST_VERSION" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_SaveLastVersionInfo" />
+    <CustomAction Id="SAVE_TOOLID" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_SaveToolID" />
+    <CustomAction Id="SET_CGA_ADDLOCAL" Property="ADDLOCAL" Value="AMAT" />
+    <CustomAction Id="SET_CGA_CURRENTBASELINE" Property="CGA_CURRENTBASELINE_NAME" Value="Unknown" />
+    <CustomAction Id="SET_CGA_MAINT_DESC1" Property="CGA_MAINT_DESC" Value="The [Wizard] will allow you to remove [ProductName] from your computer.  Click Next to continue or Cancel to exit the [Wizard]." />
+    <CustomAction Id="SET_CGA_MAINT_DESC2" Property="CGA_MAINT_DESC" Value="The [Wizard] will allow you to repair [ProductName] on your computer.  Click Next to continue or Cancel to exit the [Wizard]." />
+    <CustomAction Id="SET_CGA_REINSTALL" Property="REINSTALL" Value="AMAT" />
+    <CustomAction Id="SET_CGA_SHOW_FEATURESDIALOG" Property="CGA_SHOW_FEATURESDIALOG" Value="1" />
+    <CustomAction Id="SET_CGA_SHOW_IDDIALOG" Property="CGA_SHOW_IDDIALOG" Value="1" />
+    <CustomAction Id="SET_PROGRESS1" Property="Progress1" Value="Uninstalling" />
+    <CustomAction Id="SET_PROGRESS2" Property="Progress2" Value="uninstalls" />
+    <CustomAction Id="SET_PROGRESS3" Property="Progress3" Value="uninstallation" />
+    <CustomAction Id="STOP_RT_PROCESS" Directory="TARGETDIR" ExeCommand="schtasks /run /tn amatshtdn /s [RT_CTRL_NAME] [RT_USER_LOGIN]" Return="ignore" />
+    <CustomAction Id="UPDATE_IIS" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_UpdateIISConfiguration" />
+    <CustomAction Id="UPDATE_IIS_FTP" BinaryKey="CGAINST_DEPLOYCA" DllEntry="SetupFtp" />
+    <CustomAction Id="SET_WAFER_VISION_SERVER1" BinaryKey="WAFER_VISION_SERVERDLL" DllEntry="EnviromentVariable" />
+    <CustomAction Id="WAFER_VISION_SERVERERROR1" Error="This is not WaferVision server.Installation aborted" />
+    <CustomAction Id="SET_BACKUP_FILES" BinaryKey="BACKUP_FILEDLL" DllEntry="BackUpFiles" />
+    <CustomAction Id="SET_CGA_BASELINE_NAME" Property="CGA_BASELINE_NAME" Value="WaferVision" />
+    <CustomAction Id="SET_CGA_BASELINE_FOLDER" Property="CGA_BASELINE_FOLDER" Value="WaferVision" />
+    <CustomAction Id="SET_CGA_BASELINE_APP" Property="CGA_BASELINE_APP" Value="WaferVision.exe" />
+    <CustomAction Id="SET_CGA_CFGFILE" Property="CGA_CFGFILE" Value="[$DATA]reconfig.wv" />
+    <CustomAction Id="CGAINST_READ_SMTP_PARAM" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_ReadSMTPSettings" />
+    <CustomAction Id="CGAINST_SELF_UNREGISTRATION" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_SelfUnregistration" />
+    <CustomAction Id="CGAINST_GRANTACCESS" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_GrantAccess" />
+    <CustomAction Id="CGAINST_SELF_REGISTRATION" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_SelfRegistration" />
+    <CustomAction Id="CGAINST_CHANGEFILETIME" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_ChangeModificationTime" Return="ignore" />
+    <CustomAction Id="CGAINST_WRITE_SMTP_PARAM" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_WriteSMTPSettings" />
+    <CustomAction Id="CGAINST_BEFORESHUTDOWN" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_JustBeforeReboot" Return="ignore" />
+    <CustomAction Id="CGAINST_ISADMIN" BinaryKey="CGAINST_CGAISHLP" DllEntry="CGA_MSI_CheckAdminRights" />
+	</Fragment>
+</Wix>

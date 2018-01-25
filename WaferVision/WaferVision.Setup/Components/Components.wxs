@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+
+    <Property Id="COMPONENTS" Value="1"/>
+    
+    <ComponentGroup Id="AMATComponents" Directory="AMAT">
+      <Component Id="AMAT" Guid="{BD4F6366-D570-4C4A-88E9-8A693267FDA4}" KeyPath="yes">
+        <CreateFolder Directory="AMAT" />
+        <Environment Id="CGA_AMATPATH" Name="AMATPATH" Value="[CGA_AMATPATH]" Permanent="yes" />
+        <Environment Id="CGA_BASELINE_DATA" Name="BaselineData" Value="[CGA_AMATPATH][CGA_BASELINE_FOLDER]\" Action="create" Permanent="yes" System="yes" />
+        <Environment Id="WAFER_VISION_SERVER" Name="WAFER_VISION_SERVER" Value="[WAFER_VISION_SERVER]" Action="create" Permanent="yes" System="yes" />
+        <RegistryValue Id="CGA_CURRENTBASELINE_NAME" Root="HKLM" Key="SOFTWARE\Applied Materials\Current Baseline" Value="[ProductName]" Type="string" />
+        <RegistryValue Id="CGA_CURRENTBASELINE_AMATPATH" Root="HKLM" Key="SOFTWARE\Applied Materials\Current Baseline" Name="AmatPath" Value="[TARGETDIR][CGA_AMATFOLDER]\" Type="string" />
+        <RegistryValue Id="CGA_CURRENTBASELINE_BASELINEPATH" Root="HKLM" Key="SOFTWARE\Applied Materials\Current Baseline" Name="BaselinePath" Value="[TARGETDIR][CGA_AMATFOLDER]\[CGA_BASELINE_FOLDER]\Bin\[CGA_BASELINE_APP]" Type="string" />
+        <RegistryValue Id="CGA_CURRENTBASELINE_CODE" Root="HKLM" Key="SOFTWARE\Applied Materials\Current Baseline" Name="ProductCode" Value="[ProductCode]" Type="string" />
+        <RegistryValue Id="CGA_CURRENTBASELINE_FRAMEWORKVERSION" Root="HKLM" Key="SOFTWARE\Applied Materials\Current Baseline" Name="FrameworkVersion" Value="[CGA_FRAMEWORK_VERSION]" Type="string" />
+        <RegistryValue Id="CGA_CURRENTBASELINE_HRTSIP" Root="HKLM" Key="SOFTWARE\Applied Materials\Current Baseline" Name="HRTS_IP" Value="[HRTS_IP]" Type="string" />
+        <RegistryValue Id="CGA_CURRENTBASELINE_RTNAME" Root="HKLM" Key="SOFTWARE\Applied Materials\Current Baseline" Name="RTName" Value="[RT_CTRL_NAME]" Type="string" />
+        <RegistryValue Id="CGA_CURRENTBASELINE_VERSION" Root="HKLM" Key="SOFTWARE\Applied Materials\Current Baseline" Name="ProductVersion" Value="[CGA_VERSION_STRING]" Type="string" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="RESComponents" Directory="RES">
+      <Component Id="RES" Guid="{D83EF0E6-FA57-440F-BCDF-659849201057}" KeyPath="yes">
+        <CreateFolder Directory="RES"/>
+      </Component>
+      <Component Id="RES_DATAFILES" Guid="{363FFC36-835F-405E-9501-351D5D9DEA9D}">
+        <File Id="BG_PNG" Name="bg.png" KeyPath="yes" Vital="no" DiskId="1" Source="WaferVisionWix\Src\File\BG_PNG" />
+        <File Id="CANCEL_PNG" Name="cancel.png" Vital="no" DiskId="1" Source="WaferVisionWix\Src\File\CANCEL_PNG" />
+        <File Id="DVR_JPG" Name="DVR.jpg" Vital="no" DiskId="1" Source="WaferVisionWix\Src\File\DVR_JPG" />
+        <File Id="FOLDER_PNG" Name="folder.png" Vital="no" DiskId="1" Source="WaferVisionWix\Src\File\FOLDER_PNG" />
+        <File Id="HELP_JPG" Name="help.jpg" Vital="no" DiskId="1" Source="WaferVisionWix\Src\File\HELP_JPG" />
+        <File Id="HELP_PNG" Name="help.png" Vital="no" DiskId="1" Source="WaferVisionWix\Src\File\HELP_PNG" />
+        <File Id="LEFT_PNG" Name="left.png" Vital="no" DiskId="1" Source="WaferVisionWix\Src\File\LEFT_PNG" />
+        <File Id="OK_PNG" Name="ok.png" Vital="no" DiskId="1" Source="WaferVisionWix\Src\File\OK_PNG" />
+        <File Id="PAUSE_PNG" Name="pause.png" Vital="no" DiskId="1" Source="WaferVisionWix\Src\File\PAUSE_PNG" />
+        <File Id="PLAY_PNG" Name="play.png" Vital="no" DiskId="1" Source="WaferVisionWix\Src\File\PLAY_PNG" />
+        <File Id="RECORD_PNG" Name="record.png" Vital="no" DiskId="1" Source="WaferVisionWix\Src\File\RECORD_PNG" />
+        <File Id="RIGHT_PNG" Name="right.png" Vital="no" DiskId="1" Source="WaferVisionWix\Src\File\RIGHT_PNG" />
+        <File Id="WV_JPG" Name="WV.jpg" Vital="no" DiskId="1" Source="WaferVisionWix\Src\File\WV_JPG" />
+        <File Id="WVHELP_JPG" Name="WVHelp.jpg" Vital="no" DiskId="1" Source="WaferVisionWix\Src\File\WVHELP_JPG" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="BINComponents" Directory="BIN">
+      <Component Id="AMATCRT8_DLL" Guid="{2B6A101F-6ED4-456E-B188-CF8129D5E654}">
+        <File Id="AMATCRT8_DLL" Name="amatcrt8.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\AMATCRT8_DLL" />
+      </Component>
+      <Component Id="BIN_DATAFILES" Guid="{3562B51E-AEB0-45AA-B467-20820CE17CCA}">
+        <File Id="AMATCRT8_PDB" Name="amatcrt8.pdb" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\AMATCRT8_PDB" />
+        <File Id="AMATSYS8_PDB" Name="amatsys8.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\AMATSYS8_PDB" />
+        <File Id="CGACFG_PDB" Name="cgacfg.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGACFG_PDB" />
+        <File Id="CGAEVENT_PDB" Name="cgaevent.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGAEVENT_PDB" />
+        <File Id="CGAFA_E300PS_PDB" Name="cgafa_e300ps.pdb" ShortName="CGAFA_1.PDB" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGAFA_E300PS_PDB" />
+        <File Id="CGAFA_OPTDEF_PDB" Name="cgafa_optdef.pdb" ShortName="CGAFA_2.PDB" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGAFA_OPTDEF_PDB" />
+        <File Id="CGAFA_UTILS_PDB" Name="cgafa_utils.pdb" ShortName="CGAFA_3.PDB" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGAFA_UTILS_PDB" />
+        <File Id="CGALOCUI_PDB" Name="cgalocui.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGALOCUI_PDB" />
+        <File Id="CGAMAIN_PDB" Name="cgamain.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGAMAIN_PDB" />
+        <File Id="CGAOPTDEF_PDB" Name="cgaoptdef.pdb" ShortName="CGAOPT1.PDB" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGAOPTDEF_PDB" />
+        <File Id="CGAREMOTING_PDB" Name="cgaremoting.pdb" ShortName="CGAREM1.PDB" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGAREMOTING_PDB" />
+        <File Id="CGARNODE_PDB" Name="cgarnode.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGARNODE_PDB" />
+        <File Id="CGART_EXPORTS_PDB" Name="cgart_exports.pdb" ShortName="CGART_1.PDB" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGART_EXPORTS_PDB" />
+        <File Id="CGASDEVS_PDB" Name="cgasdevs.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGASDEVS_PDB" />
+        <File Id="CGASEQ_EFEMINTERFACE_PDB" Name="cgaseq_EFEMInterface.pdb" ShortName="CGASEQ1.PDB" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGASEQ_EFEMINTERFACE_PDB" />
+        <File Id="CGAWH_PDB" Name="cgawh.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGAWH_PDB" />
+        <File Id="CGA_DEVICE_PDB" Name="cga_device.pdb" ShortName="CGA_DE1.PDB" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGA_DEVICE_PDB" />
+        <File Id="CGA_EXPR_PDB" Name="cga_expr.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGA_EXPR_PDB" />
+        <File Id="CGA_MK_PDB" Name="cga_mk.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGA_MK_PDB" />
+        <File Id="CGA_SEQLOCUI_PDB" Name="cga_seqlocui.pdb" ShortName="CGA_SE1.PDB" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGA_SEQLOCUI_PDB" />
+        <File Id="CGA_SEQUTL_PDB" Name="cga_sequtl.pdb" ShortName="CGA_SE2.PDB" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGA_SEQUTL_PDB" />
+        <File Id="DCGA_PDB" Name="dcga.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\DCGA_PDB" />
+        <File Id="DEFCRT8_PDB" Name="defcrt8.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\DEFCRT8_PDB" />
+        <File Id="DEVMANISM_PDB" Name="devmanism.pdb" ShortName="DEVMAN1.PDB" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\DEVMANISM_PDB" />
+        <File Id="EZMSGSV8_PDB" Name="EZmsgSv8.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\EZMSGSV8_PDB" />
+        <File Id="EZSECS8_PDB" Name="EZsecs8.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\EZSECS8_PDB" />
+        <File Id="FEPRDMDVR_PDB" Name="FEPRDMDVR.pdb" ShortName="FEPRDM1.PDB" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\FEPRDMDVR_PDB" />
+        <File Id="FEPRDMPVCAM_PDB" Name="FEPRDMpvCam.pdb" ShortName="FEPRDM2.PDB" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\FEPRDMPVCAM_PDB" />
+        <File Id="GPUBASE_PDB" Name="gpubase.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\GPUBASE_PDB" />
+        <File Id="GPUCHEAP_PDB" Name="gpucheap.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\GPUCHEAP_PDB" />
+        <File Id="GPUTREE_PDB" Name="gputree.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\GPUTREE_PDB" />
+        <File Id="GPUUTL_PDB" Name="gpuutl.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\GPUUTL_PDB" />
+        <File Id="INFRANT8_PDB" Name="InfraNT8.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\INFRANT8_PDB" />
+        <File Id="LPSOLVE55_PDB" Name="lpsolve55.pdb" ShortName="LPSOLV1.PDB" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\LPSOLVE55_PDB" />
+        <File Id="MICROSOFT_DEPLOYMENT_WINDOWSINSTALLER_DLL" Name="Microsoft.Deployment.WindowsInstaller.dll" ShortName="MICROS1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\MICROSOFT_DEPLOYMENT_WINDOWSINSTALLER_DLL" />
+        <File Id="MKSHORTCUTS_VBS" Name="mkshortcuts.vbs" ShortName="MKSHOR1.VBS" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\MKSHORTCUTS_VBS" />
+        <File Id="OSAUTIL8_PDB" Name="OSAUtil8.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\OSAUTIL8_PDB" />
+        <File Id="PRODUCTVER_XML" Name="ProductVer.xml" ShortName="PRODUC1.XML" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\PRODUCTVER_XML" />
+        <File Id="REGEXAP8_PDB" Name="regexap8.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\REGEXAP8_PDB" />
+        <File Id="REVERTPROD_BAT" Name="RevertProd.bat" ShortName="REVERT1.BAT" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\REVERTPROD_BAT" />
+        <File Id="SEQLOCUI_PDB" Name="seqlocui.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\SEQLOCUI_PDB" />
+        <File Id="SEQRDM_PDB" Name="SeqRDM.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\SEQRDM_PDB" />
+        <File Id="SEQUENCER_PDB" Name="sequencer.pdb" ShortName="SEQUEN1.PDB" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\SEQUENCER_PDB" />
+        <File Id="STARTUP_BAT" Name="StartUp.bat" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\STARTUP_BAT" />
+        <File Id="UNITTESTRUNNER_PDB" Name="UnitTestRunner.pdb" ShortName="UNITTE1.PDB" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\UNITTESTRUNNER_PDB" />
+        <File Id="WAFERVISION_PDB" Name="WaferVision.pdb" ShortName="WAFERV1.PDB" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\WAFERVISION_PDB" />
+        <File Id="WAFERVISION_XML" Name="wafervision.xml" ShortName="WAFERV1.XML" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\WAFERVISION_XML" />
+        <File Id="WAFERVISIONGUI_PDB" Name="WaferVisionGui.pdb" ShortName="WAFERV2.PDB" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\WAFERVISIONGUI_PDB" />
+        <File Id="WVVIEW_PDB" Name="WVView.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\WVVIEW_PDB" />
+        <File Id="WV_OPTDEF_PDB" Name="wv_optdef.pdb" ShortName="WV_OPT1.PDB" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\WV_OPTDEF_PDB" />
+        <File Id="WV_QV_PDB" Name="wv_QV.pdb" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\WV_QV_PDB" />
+        <File Id="WV_SYSMAN_PDB" Name="wv_sysman.pdb" ShortName="WV_SYS1.PDB" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\WV_SYSMAN_PDB" />
+      </Component>
+      <Component Id="AMATRAID0_DLL" Guid="{A6B8D6AE-BAB9-48A0-8CE2-ACBB30991269}">
+        <File Id="AMATRAID0_DLL" Name="amatraid0.dll" KeyPath="yes" ShortName="AMATRA1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\AMATRAID0_DLL" />
+      </Component>
+      <Component Id="AMATSYS8_DLL" Guid="{381605EE-91F8-4CFA-AAE2-6E112EF7EFE6}">
+        <File Id="AMATSYS8_DLL" Name="amatsys8.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\AMATSYS8_DLL" />
+      </Component>
+      <Component Id="CGACFG_DLL" Guid="{CE2BEBE7-1D0D-4810-8862-2461210F45D2}">
+        <File Id="CGACFG_DLL" Name="cgacfg.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGACFG_DLL" />
+      </Component>
+      <Component Id="CGADLDR_EXE" Guid="{AD8FF916-ABFD-412F-9708-CD112A2F118A}">
+        <File Id="CGADLDR_EXE" Name="cgadldr.exe" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGADLDR_EXE" />
+      </Component>
+      <Component Id="CGAEVDUMP_EXE" Guid="{6D1237F4-F06D-4AE2-BF08-4AEA385191F3}">
+        <File Id="CGAEVDUMP_EXE" Name="cgaevdump.exe" KeyPath="yes" ShortName="CGAEVD1.EXE" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGAEVDUMP_EXE" />
+      </Component>
+      <Component Id="CGAEVENT_DLL" Guid="{2704AF49-7150-4C67-89F7-E2FBE000D39D}">
+        <File Id="CGAEVENT_DLL" Name="cgaevent.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGAEVENT_DLL" />
+      </Component>
+      <Component Id="CGAFA_E300PS_DLL" Guid="{409139BD-E779-430B-B1FC-E03D3C5395E1}">
+        <File Id="CGAFA_E300PS_DLL" Name="cgafa_e300ps.dll" KeyPath="yes" ShortName="CGAFA_1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGAFA_E300PS_DLL" />
+      </Component>
+      <Component Id="CGAFA_OPTDEF_DLL" Guid="{FDBDA659-CB57-4759-86ED-E129811A4EC0}">
+        <File Id="CGAFA_OPTDEF_DLL" Name="cgafa_optdef.dll" KeyPath="yes" ShortName="CGAFA_2.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGAFA_OPTDEF_DLL" />
+      </Component>
+      <Component Id="CGAFA_UTILS_DLL" Guid="{491A95A5-D00E-4E6C-B24D-253A7CEFCA77}">
+        <File Id="CGAFA_UTILS_DLL" Name="cgafa_utils.dll" KeyPath="yes" ShortName="CGAFA_3.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGAFA_UTILS_DLL" />
+      </Component>
+      <Component Id="CGALOCUI_DLL" Guid="{0A6F392F-8EDD-4525-B38D-5D8D699E7AE5}">
+        <File Id="CGALOCUI_DLL" Name="cgalocui.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGALOCUI_DLL" />
+      </Component>
+      <Component Id="CGAMAIN_DLL" Guid="{84C412CD-7C38-4B26-96F8-8EF1CD6FF23A}">
+        <File Id="CGAMAIN_DLL" Name="cgamain.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGAMAIN_DLL" />
+      </Component>
+      <Component Id="CGAOPTDEF_DLL" Guid="{9D8D30E8-B241-461B-93CF-1BE5896E35E3}">
+        <File Id="CGAOPTDEF_DLL" Name="cgaoptdef.dll" KeyPath="yes" ShortName="CGAOPT1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGAOPTDEF_DLL" />
+      </Component>
+      <Component Id="CGAREMOTING_DLL" Guid="{471D3E1C-2B7A-4B95-BA2B-15070422B79C}">
+        <File Id="CGAREMOTING_DLL" Name="cgaremoting.dll" KeyPath="yes" ShortName="CGAREM1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGAREMOTING_DLL" />
+      </Component>
+      <Component Id="CGARNODE_EXE" Guid="{6A3D195D-9B2A-4C1B-B521-A631560EB2AF}">
+        <File Id="CGARNODE_EXE" Name="cgarnode.exe" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGARNODE_EXE" />
+      </Component>
+      <Component Id="CGART_EXPORTS_DLL" Guid="{286AAC04-F03B-403D-AAA5-FB283A8581BB}">
+        <File Id="CGART_EXPORTS_DLL" Name="cgart_exports.dll" KeyPath="yes" ShortName="CGART_1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGART_EXPORTS_DLL" />
+      </Component>
+      <Component Id="CGASDEVS_DLL" Guid="{4310564B-E38B-4A52-A811-89A7EDC1CA0D}">
+        <File Id="CGASDEVS_DLL" Name="cgasdevs.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGASDEVS_DLL" />
+      </Component>
+      <Component Id="CGASEQ_EFEMINTERFACE_DLL" Guid="{2B454AA7-614F-47B4-ABAE-F63E4C566265}">
+        <File Id="CGASEQ_EFEMINTERFACE_DLL" Name="cgaseq_EFEMInterface.dll" KeyPath="yes" ShortName="CGASEQ1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGASEQ_EFEMINTERFACE_DLL" />
+      </Component>
+      <Component Id="CGAWH_DLL" Guid="{071E9BE8-6EB0-4091-81E7-EA671784C70A}">
+        <File Id="CGAWH_DLL" Name="cgawh.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGAWH_DLL" />
+      </Component>
+      <Component Id="CGAWHDUMP_EXE" Guid="{4B61C2A7-4F49-41FD-A343-193683B541D6}">
+        <File Id="CGAWHDUMP_EXE" Name="cgawhdump.exe" KeyPath="yes" ShortName="CGAWHD1.EXE" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGAWHDUMP_EXE" />
+      </Component>
+      <Component Id="CGA_DEVICE_DLL" Guid="{35926520-B56B-4FF1-AB70-233AF550791C}">
+        <File Id="CGA_DEVICE_DLL" Name="cga_device.dll" KeyPath="yes" ShortName="CGA_DE1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGA_DEVICE_DLL" />
+      </Component>
+      <Component Id="CGA_EXPR_DLL" Guid="{35499BB9-F397-4399-A332-882ABEAEFEC0}">
+        <File Id="CGA_EXPR_DLL" Name="cga_expr.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGA_EXPR_DLL" />
+      </Component>
+      <Component Id="CGA_MK_DLL" Guid="{889CE08B-3FDD-4537-BFD5-0A007D4EA854}">
+        <File Id="CGA_MK_DLL" Name="cga_mk.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGA_MK_DLL" />
+      </Component>
+      <Component Id="CGA_SEQLOCUI_DLL" Guid="{FF008A40-7323-495F-986C-8F51CBEABAB8}">
+        <File Id="CGA_SEQLOCUI_DLL" Name="cga_seqlocui.dll" KeyPath="yes" ShortName="CGA_SE1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGA_SEQLOCUI_DLL" />
+      </Component>
+      <Component Id="CGA_SEQUTL_DLL" Guid="{A992AAE9-AC02-4DF2-8ADD-1753F5A0979E}">
+        <File Id="CGA_SEQUTL_DLL" Name="cga_sequtl.dll" KeyPath="yes" ShortName="CGA_SE2.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\CGA_SEQUTL_DLL" />
+      </Component>
+      <Component Id="DBGHELP_DLL" Guid="{92D2BF77-A1C1-405B-A656-E76C6D1F833D}">
+        <File Id="DBGHELP_DLL" Name="dbghelp.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\DBGHELP_DLL" />
+      </Component>
+      <Component Id="DCGA_DLL" Guid="{5B30EB2C-847B-4AE3-9899-184B3AA64440}">
+        <File Id="DCGA_DLL" Name="dcga.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\DCGA_DLL" />
+      </Component>
+      <Component Id="DEFCRT8_DLL" Guid="{37ECBB69-813E-4205-8A52-C724792E05A2}">
+        <File Id="DEFCRT8_DLL" Name="defcrt8.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\DEFCRT8_DLL" />
+      </Component>
+      <Component Id="DEVMANISM_DLL" Guid="{CE61A58C-A116-4E24-9C85-6B8BF7002441}">
+        <File Id="DEVMANISM_DLL" Name="devmanism.dll" KeyPath="yes" ShortName="DEVMAN1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\DEVMANISM_DLL" />
+      </Component>
+      <Component Id="DIET_DLL" Guid="{4E6E9834-A72B-4B17-B65A-84223AC9E729}">
+        <File Id="DIET_DLL" Name="Diet.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\DIET_DLL" />
+      </Component>
+      <Component Id="ECMASTER_DLL" Guid="{C99CB1A9-52A4-4D83-BD3D-F6364B9711C3}">
+        <File Id="ECMASTER_DLL" Name="EcMaster.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\ECMASTER_DLL" />
+      </Component>
+      <Component Id="EMLLPCAP_DLL" Guid="{D6F1C184-6309-4CDA-8DA8-9BFBB57B9B63}">
+        <File Id="EMLLPCAP_DLL" Name="emllPCap.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\EMLLPCAP_DLL" />
+      </Component>
+      <Component Id="EZMSGSV8_DLL" Guid="{9EE1D147-2DE7-4DF8-8BF6-5DE7E61B92E0}">
+        <File Id="EZMSGSV8_DLL" Name="EZmsgSv8.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\EZMSGSV8_DLL" />
+      </Component>
+      <Component Id="EZSECS8_DLL" Guid="{ED2E2089-B12D-470E-905F-C6D7F1E8707F}">
+        <File Id="EZSECS8_DLL" Name="EZsecs8.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\EZSECS8_DLL" />
+      </Component>
+      <Component Id="FEPRDMDVR_DLL" Guid="{70F8906D-C28B-4FDC-9C1B-15112BA12556}">
+        <File Id="FEPRDMDVR_DLL" Name="FEPRDMDVR.dll" KeyPath="yes" ShortName="FEPRDM1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\FEPRDMDVR_DLL" />
+      </Component>
+      <Component Id="FEPRDMPVCAM_DLL" Guid="{CFB62AF7-CC57-4735-AA39-6471AF8BA52A}">
+        <File Id="FEPRDMPVCAM_DLL" Name="FEPRDMpvCam.dll" KeyPath="yes" ShortName="FEPRDM2.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\FEPRDMPVCAM_DLL" />
+      </Component>
+      <Component Id="GPUBASE_DLL" Guid="{6219FA85-C000-4C20-AAB6-AB09423CEA90}">
+        <File Id="GPUBASE_DLL" Name="gpubase.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\GPUBASE_DLL" />
+      </Component>
+      <Component Id="GPUCHEAP_DLL" Guid="{0FEAFA6B-AF4E-4E9D-A1BE-5F2F5F87BA3C}">
+        <File Id="GPUCHEAP_DLL" Name="gpucheap.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\GPUCHEAP_DLL" />
+      </Component>
+      <Component Id="GPUTREE_DLL" Guid="{39FFAE59-0DA5-4AFC-9E8F-4AD339353DA5}">
+        <File Id="GPUTREE_DLL" Name="gputree.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\GPUTREE_DLL" />
+      </Component>
+      <Component Id="GPUUTL_DLL" Guid="{918D3B2C-5BBC-44C1-AF67-AB80203BED25}">
+        <File Id="GPUUTL_DLL" Name="gpuutl.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\GPUUTL_DLL" />
+      </Component>
+      <Component Id="INFRANT8_DLL" Guid="{FED1BD7D-CEC3-4F6F-B6F6-41105B306C50}">
+        <File Id="INFRANT8_DLL" Name="InfraNT8.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\INFRANT8_DLL" />
+      </Component>
+      <Component Id="LPSOLVE55_DLL" Guid="{B42D0113-0825-4334-ADCD-CFB235924AA0}">
+        <File Id="LPSOLVE55_DLL" Name="lpsolve55.dll" KeyPath="yes" ShortName="LPSOLV1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\LPSOLVE55_DLL" />
+      </Component>
+      <Component Id="OSACRSHS_EXE" Guid="{AF404FBF-7065-4054-ABB9-FCBD4EAAC0FA}">
+        <File Id="OSACRSHS_EXE" Name="osacrshs.exe" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\OSACRSHS_EXE" />
+      </Component>
+      <Component Id="OSANTMS8_DLL" Guid="{90A15544-2ED4-46D2-A1EA-32207F8C2BAE}">
+        <File Id="OSANTMS8_DLL" Name="osantms8.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\OSANTMS8_DLL" />
+      </Component>
+      <Component Id="OSARSAPP_EXE" Guid="{799087A2-822E-4E9F-9D8D-31CE316283D8}">
+        <File Id="OSARSAPP_EXE" Name="osarsapp.exe" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\OSARSAPP_EXE" />
+      </Component>
+      <Component Id="OSAUTIL8_DLL" Guid="{2427FAFF-154D-4DD5-B1C8-3F6C36EC5AE3}">
+        <File Id="OSAUTIL8_DLL" Name="OSAUtil8.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\OSAUTIL8_DLL" />
+      </Component>
+      <Component Id="PMVIEWER_EXE" Guid="{20AE60C8-3F1A-4B14-960C-CDC85916BDDE}">
+        <File Id="PMVIEWER_EXE" Name="PMViewer.exe" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\PMVIEWER_EXE" />
+      </Component>
+      <Component Id="PSAPI_DLL" Guid="{D0FAC42A-E219-4533-912D-5277455A1398}">
+        <File Id="PSAPI_DLL" Name="psapi.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\PSAPI_DLL" />
+      </Component>
+      <Component Id="RDMASM_DLL" Guid="{212C99C8-F823-4E3C-B4FA-74C90CFDCC7F}">
+        <File Id="RDMASM_DLL" Name="RDMASM.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMASM_DLL" />
+      </Component>
+      <Component Id="RDMCHINTERFACE_DLL" Guid="{CBBEAC60-9776-4AD2-A28F-33458280E9A4}">
+        <File Id="RDMCHINTERFACE_DLL" Name="RDMChInterface.dll" KeyPath="yes" ShortName="RDMCHI1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMCHINTERFACE_DLL" />
+      </Component>
+      <Component Id="RDMCOMM_DLL" Guid="{1315A225-EDF6-4434-8BEA-B06E1D0968E7}">
+        <File Id="RDMCOMM_DLL" Name="RDMComm.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMCOMM_DLL" />
+      </Component>
+      <Component Id="RDMCTLRCMDHDLR_DLL" Guid="{F0F1863B-1B92-4836-902C-5C8F4D7429A7}">
+        <File Id="RDMCTLRCMDHDLR_DLL" Name="RDMCtlrCmdHdlr.dll" KeyPath="yes" ShortName="RDMCTL1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMCTLRCMDHDLR_DLL" />
+      </Component>
+      <Component Id="RDMDMFC_DLL" Guid="{10B77A02-8955-4FFE-B3BA-B0917DC38C3D}">
+        <File Id="RDMDMFC_DLL" Name="RDMDmfc.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMDMFC_DLL" />
+      </Component>
+      <Component Id="RDMDNET_DLL" Guid="{C3848B84-646F-4D44-90F2-7B5E406541A8}">
+        <File Id="RDMDNET_DLL" Name="RDMDNet.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMDNET_DLL" />
+      </Component>
+      <Component Id="RDMDNMOTOR_DLL" Guid="{78CF9CDF-446E-4D9C-BBCC-511D5D05ADB3}">
+        <File Id="RDMDNMOTOR_DLL" Name="RDMDNMotor.dll" KeyPath="yes" ShortName="RDMDNM1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMDNMOTOR_DLL" />
+      </Component>
+      <Component Id="RDMDR_DLL" Guid="{BF3CFCCB-6FE3-484B-8CFB-16E9BF2ADD9A}">
+        <File Id="RDMDR_DLL" Name="RDMDR.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMDR_DLL" />
+      </Component>
+      <Component Id="RDMECATD_DLL" Guid="{F8895CD6-A390-466F-9B31-20FCD8327DC4}">
+        <File Id="RDMECATD_DLL" Name="RDMECatD.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMECATD_DLL" />
+      </Component>
+      <Component Id="RDMECATDGEN_DLL" Guid="{F1A6BFD6-78EF-48B7-8D1B-C06BBBFD8A2B}">
+        <File Id="RDMECATDGEN_DLL" Name="RDMECatDGen.dll" KeyPath="yes" ShortName="RDMECA1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMECATDGEN_DLL" />
+      </Component>
+      <Component Id="RDMECATD_PS_DLL" Guid="{02D39167-A362-43F9-8B66-076D44D7242C}">
+        <File Id="RDMECATD_PS_DLL" Name="RDMECatD_ps.dll" KeyPath="yes" ShortName="RDMECA2.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMECATD_PS_DLL" />
+      </Component>
+      <Component Id="RDMECATMOTOR_DLL" Guid="{4BF6ADC6-85E3-4C86-811A-75D53C6D1DBF}">
+        <File Id="RDMECATMOTOR_DLL" Name="RDMECatMotor.dll" KeyPath="yes" ShortName="RDMECA3.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMECATMOTOR_DLL" />
+      </Component>
+      <Component Id="RDMEDCM_DLL" Guid="{9AA8F3BB-8AE0-403C-B66A-EDA8B2223F73}">
+        <File Id="RDMEDCM_DLL" Name="RDMEDCM.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMEDCM_DLL" />
+      </Component>
+      <Component Id="RDMETMB_DLL" Guid="{B63030B6-5FCB-4322-B312-C6C0BDF0F47E}">
+        <File Id="RDMETMB_DLL" Name="RDMETMB.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMETMB_DLL" />
+      </Component>
+      <Component Id="RDMEUROTHERM_DLL" Guid="{332EFC09-D18B-4E14-8D87-48E333425906}">
+        <File Id="RDMEUROTHERM_DLL" Name="RDMEurotherm.dll" KeyPath="yes" ShortName="RDMEUR1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMEUROTHERM_DLL" />
+      </Component>
+      <Component Id="RDMFIC_DLL" Guid="{4E21B78E-5ACB-45CB-B671-4AA6256408D0}">
+        <File Id="RDMFIC_DLL" Name="RDMFIC.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMFIC_DLL" />
+      </Component>
+      <Component Id="RDMGASPANEL_DLL" Guid="{CA55394D-E841-438E-BB9B-1DEA7BBDA833}">
+        <File Id="RDMGASPANEL_DLL" Name="RDMGaspanel.dll" KeyPath="yes" ShortName="RDMGAS1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMGASPANEL_DLL" />
+      </Component>
+      <Component Id="RDMGASSERVICE_DLL" Guid="{83B4EFAA-2EA2-4488-AF17-D3AEBFBC39BB}">
+        <File Id="RDMGASSERVICE_DLL" Name="RDMGasService.dll" KeyPath="yes" ShortName="RDMGAS2.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMGASSERVICE_DLL" />
+      </Component>
+      <Component Id="RDMGDNMOTOR_DLL" Guid="{FDF96D58-C356-437B-A689-BB834EFD9DF8}">
+        <File Id="RDMGDNMOTOR_DLL" Name="RDMGDNMotor.dll" KeyPath="yes" ShortName="RDMGDN1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMGDNMOTOR_DLL" />
+      </Component>
+      <Component Id="RDMGENERATOR_DLL" Guid="{BAFEE874-55A0-401C-B1FB-A8A98E127DED}">
+        <File Id="RDMGENERATOR_DLL" Name="RDMGenerator.dll" KeyPath="yes" ShortName="RDMGEN1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMGENERATOR_DLL" />
+      </Component>
+      <Component Id="RDMGSCALIB_DLL" Guid="{DC71A871-C4FC-4138-978D-550F63C05EC9}">
+        <File Id="RDMGSCALIB_DLL" Name="RDMGSCalib.dll" KeyPath="yes" ShortName="RDMGSC1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMGSCALIB_DLL" />
+      </Component>
+      <Component Id="RDMGSCLOGCHECK_DLL" Guid="{A0E4DBDE-5137-49AA-B0EE-18E6D7321FEB}">
+        <File Id="RDMGSCLOGCHECK_DLL" Name="RDMGSClogCheck.dll" KeyPath="yes" ShortName="RDMGSC2.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMGSCLOGCHECK_DLL" />
+      </Component>
+      <Component Id="RDMGSCYCLEPURGE_DLL" Guid="{6858D571-C33E-4F3B-B2BD-CFB88265E3C7}">
+        <File Id="RDMGSCYCLEPURGE_DLL" Name="RDMGSCyclePurge.dll" KeyPath="yes" ShortName="RDMGSC3.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMGSCYCLEPURGE_DLL" />
+      </Component>
+      <Component Id="RDMINTERLOCK_DLL" Guid="{5D720FBB-8A41-4F2C-AB82-CAC53F189CE7}">
+        <File Id="RDMINTERLOCK_DLL" Name="RDMInterlock.dll" KeyPath="yes" ShortName="RDMINT1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMINTERLOCK_DLL" />
+      </Component>
+      <Component Id="RDMLFC_DLL" Guid="{CD276D34-5055-4C37-B12A-0189FF8E68FA}">
+        <File Id="RDMLFC_DLL" Name="RDMLfc.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMLFC_DLL" />
+      </Component>
+      <Component Id="RDMMKS651_DLL" Guid="{E6F81DD6-CBB2-4615-A30D-672AEF871B85}">
+        <File Id="RDMMKS651_DLL" Name="RDMMKS651.dll" KeyPath="yes" ShortName="RDMMKS1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMMKS651_DLL" />
+      </Component>
+      <Component Id="RDMMKS683_DLL" Guid="{11E8BF90-A5BC-4F71-9902-20FDFE23942D}">
+        <File Id="RDMMKS683_DLL" Name="RDMMKS683.dll" KeyPath="yes" ShortName="RDMMKS2.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMMKS683_DLL" />
+      </Component>
+      <Component Id="RDMO2ANALYZER_DLL" Guid="{3ACE57BD-3AB0-4A5D-9920-82EDFE078D91}">
+        <File Id="RDMO2ANALYZER_DLL" Name="RDMO2Analyzer.dll" KeyPath="yes" ShortName="RDMO2A1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMO2ANALYZER_DLL" />
+      </Component>
+      <Component Id="RDMPARTS_DLL" Guid="{BC1D4694-CD4D-4E13-98CC-E9788CBCFDC9}">
+        <File Id="RDMPARTS_DLL" Name="RDMParts.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMPARTS_DLL" />
+      </Component>
+      <Component Id="RDMPM_DLL" Guid="{A2E30768-580E-45BC-9B2E-BD1850BB37FC}">
+        <File Id="RDMPM_DLL" Name="RDMPM.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMPM_DLL" />
+      </Component>
+      <Component Id="RDMPRESSGAUGES_DLL" Guid="{3EA375CE-9420-49DB-BCE8-E1314CBD9159}">
+        <File Id="RDMPRESSGAUGES_DLL" Name="RDMPressGauges.dll" KeyPath="yes" ShortName="RDMPRE1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMPRESSGAUGES_DLL" />
+      </Component>
+      <Component Id="RDMROUGHPUMP_DLL" Guid="{D335A415-BAAB-486E-A15C-B26228133F27}">
+        <File Id="RDMROUGHPUMP_DLL" Name="RDMRoughPump.dll" KeyPath="yes" ShortName="RDMROU1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMROUGHPUMP_DLL" />
+      </Component>
+      <Component Id="RDMRPS_DLL" Guid="{320A548D-E4CE-4383-8533-CE5336179D98}">
+        <File Id="RDMRPS_DLL" Name="RDMRPS.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMRPS_DLL" />
+      </Component>
+      <Component Id="RDMSERVICE_DLL" Guid="{392888F4-1293-4274-B662-0D1C161E8715}">
+        <File Id="RDMSERVICE_DLL" Name="RDMService.dll" KeyPath="yes" ShortName="RDMSER1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMSERVICE_DLL" />
+      </Component>
+      <Component Id="RDMSIGNALLAMPS_DLL" Guid="{1E3DF8A7-EB5B-43BD-9C83-F94680BFF4AB}">
+        <File Id="RDMSIGNALLAMPS_DLL" Name="RDMSignalLamps.dll" KeyPath="yes" ShortName="RDMSIG1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMSIGNALLAMPS_DLL" />
+      </Component>
+      <Component Id="RDMSIGNALTOWER_DLL" Guid="{F5285211-D216-4C0D-89F0-A920596C1991}">
+        <File Id="RDMSIGNALTOWER_DLL" Name="RDMSignalTower.dll" KeyPath="yes" ShortName="RDMSIG2.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMSIGNALTOWER_DLL" />
+      </Component>
+      <Component Id="RDMSLITVALVE_DLL" Guid="{3347BF52-D836-4A6E-B4CD-8159E9F64D10}">
+        <File Id="RDMSLITVALVE_DLL" Name="RDMSlitValve.dll" KeyPath="yes" ShortName="RDMSLI1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMSLITVALVE_DLL" />
+      </Component>
+      <Component Id="RDMSOCKETS_DLL" Guid="{12B10A08-7D6E-461A-9DF9-804774BE0D9C}">
+        <File Id="RDMSOCKETS_DLL" Name="RDMSockets.dll" KeyPath="yes" ShortName="RDMSOC1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMSOCKETS_DLL" />
+      </Component>
+      <Component Id="RDMTRANSDUCER_DLL" Guid="{F5191D4D-44B9-4AF8-BB62-1F1DF81B0218}">
+        <File Id="RDMTRANSDUCER_DLL" Name="RDMTransducer.dll" KeyPath="yes" ShortName="RDMTRA1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMTRANSDUCER_DLL" />
+      </Component>
+      <Component Id="RDMUSERACTION_DLL" Guid="{51E99479-A818-416E-964D-B79119696158}">
+        <File Id="RDMUSERACTION_DLL" Name="RDMUserAction.dll" KeyPath="yes" ShortName="RDMUSE1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMUSERACTION_DLL" />
+      </Component>
+      <Component Id="RDMVALVE_DLL" Guid="{B108113A-39D5-4E47-BF09-65F45D24EDB1}">
+        <File Id="RDMVALVE_DLL" Name="RDMValve.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMVALVE_DLL" />
+      </Component>
+      <Component Id="RDMVIRTUALIO_DLL" Guid="{1043B8D0-085B-4682-B3AB-C2C27F6A747D}">
+        <File Id="RDMVIRTUALIO_DLL" Name="RDMVirtualIO.dll" KeyPath="yes" ShortName="RDMVIR1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMVIRTUALIO_DLL" />
+      </Component>
+      <Component Id="RDMWATLOW_DLL" Guid="{17EF2FAE-DABB-448B-AB02-4D28407B5B3C}">
+        <File Id="RDMWATLOW_DLL" Name="RDMWatlow.dll" KeyPath="yes" ShortName="RDMWAT1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDMWATLOW_DLL" />
+      </Component>
+      <Component Id="RDM_ARCH_OPTDEF_DLL" Guid="{D7A08195-B5AC-4967-BDCC-FC5C97BE69D1}">
+        <File Id="RDM_ARCH_OPTDEF_DLL" Name="RDM_Arch_Optdef.dll" KeyPath="yes" ShortName="RDM_AR1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDM_ARCH_OPTDEF_DLL" />
+      </Component>
+      <Component Id="RDM_ATC_OPTDEF_DLL" Guid="{AF32EC9F-20B6-47DE-88B9-052C913E5291}">
+        <File Id="RDM_ATC_OPTDEF_DLL" Name="RDM_ATC_Optdef.dll" KeyPath="yes" ShortName="RDM_AT1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDM_ATC_OPTDEF_DLL" />
+      </Component>
+      <Component Id="RDM_BASE_OPTDEF_DLL" Guid="{F9B0B135-7391-4FF1-A89D-CD48519E8683}">
+        <File Id="RDM_BASE_OPTDEF_DLL" Name="RDM_Base_Optdef.dll" KeyPath="yes" ShortName="RDM_BA1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDM_BASE_OPTDEF_DLL" />
+      </Component>
+      <Component Id="RDM_CDC_OPTDEF_DLL" Guid="{90E68623-1646-4ACA-8292-5024381CD3D3}">
+        <File Id="RDM_CDC_OPTDEF_DLL" Name="RDM_CDC_Optdef.dll" KeyPath="yes" ShortName="RDM_CD1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDM_CDC_OPTDEF_DLL" />
+      </Component>
+      <Component Id="RDM_CSG_OPTDEF_DLL" Guid="{DB4F721F-E6FA-4056-BFE4-C758652D0260}">
+        <File Id="RDM_CSG_OPTDEF_DLL" Name="RDM_CSG_Optdef.dll" KeyPath="yes" ShortName="RDM_CS1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDM_CSG_OPTDEF_DLL" />
+      </Component>
+      <Component Id="RDM_IO_OPTDEF_DLL" Guid="{BACAA87C-40E4-485D-BD37-1B0A3260A8BC}">
+        <File Id="RDM_IO_OPTDEF_DLL" Name="RDM_IO_Optdef.dll" KeyPath="yes" ShortName="RDM_IO1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDM_IO_OPTDEF_DLL" />
+      </Component>
+      <Component Id="RDM_MDP_OPTDEF_DLL" Guid="{DF0F1108-EE98-4BB4-BA1E-A8C89E826FC1}">
+        <File Id="RDM_MDP_OPTDEF_DLL" Name="RDM_MDP_Optdef.dll" KeyPath="yes" ShortName="RDM_MD1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDM_MDP_OPTDEF_DLL" />
+      </Component>
+      <Component Id="RDM_MISC_OPTDEF_DLL" Guid="{1FAE8EB9-A247-477B-9F04-C965FA585590}">
+        <File Id="RDM_MISC_OPTDEF_DLL" Name="RDM_Misc_Optdef.dll" KeyPath="yes" ShortName="RDM_MI1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDM_MISC_OPTDEF_DLL" />
+      </Component>
+      <Component Id="RDM_MOTION_OPTDEF_DLL" Guid="{7B810DE1-1F7F-46E5-B64E-4EA071C00B12}">
+        <File Id="RDM_MOTION_OPTDEF_DLL" Name="RDM_Motion_Optdef.dll" KeyPath="yes" ShortName="RDM_MO1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDM_MOTION_OPTDEF_DLL" />
+      </Component>
+      <Component Id="RDM_OPTDEF_DLL" Guid="{B9AE158C-4ADA-4A60-8653-4B6AAD431D15}">
+        <File Id="RDM_OPTDEF_DLL" Name="rdm_optdef.dll" KeyPath="yes" ShortName="RDM_OP1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\RDM_OPTDEF_DLL" />
+      </Component>
+      <Component Id="REGEXAP8_DLL" Guid="{53D9561B-39A6-4FE0-AA13-BC65791D3AD4}">
+        <File Id="REGEXAP8_DLL" Name="regexap8.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\REGEXAP8_DLL" />
+      </Component>
+      <Component Id="SEQLOCUI_DLL" Guid="{9987F075-67A8-4CC5-9196-735CDF1724E5}">
+        <File Id="SEQLOCUI_DLL" Name="seqlocui.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\SEQLOCUI_DLL" />
+      </Component>
+      <Component Id="SEQRDM_DLL" Guid="{0319A178-AA31-43A0-90AF-0E863FBC48E9}">
+        <File Id="SEQRDM_DLL" Name="SeqRDM.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\SEQRDM_DLL" />
+      </Component>
+      <Component Id="SEQUENCER_DLL" Guid="{CEA7F7F8-0D68-4248-8A71-D4BFBD7B0505}">
+        <File Id="SEQUENCER_DLL" Name="sequencer.dll" KeyPath="yes" ShortName="SEQUEN1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\SEQUENCER_DLL" />
+      </Component>
+      <Component Id="SVIEWDSM_EXE" Guid="{DB240DEE-2855-44E3-A352-BBBBAEACBCE6}">
+        <File Id="SVIEWDSM_EXE" Name="SViewDSM.exe" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\SVIEWDSM_EXE" />
+      </Component>
+      <Component Id="UNITTESTRUNNER_EXE" Guid="{65B3AB07-FE71-4E46-8812-F5F22B3226C7}">
+        <File Id="UNITTESTRUNNER_EXE" Name="UnitTestRunner.exe" KeyPath="yes" ShortName="UNITTE1.EXE" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\UNITTESTRUNNER_EXE" />
+      </Component>
+      <Component Id="WAFERVISION_EXE" Guid="{B89431F4-C06D-461F-8E98-06BFC2F934EC}">
+        <File Id="WAFERVISION_EXE" Name="WaferVision.exe" KeyPath="yes" ShortName="WAFERV1.EXE" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\WAFERVISION_EXE" />
+      </Component>
+      <Component Id="WAFERVISIONGUI_EXE" Guid="{06E1F8D6-C631-40A0-AC27-90812198F3D3}">
+        <File Id="WAFERVISIONGUI_EXE" Name="WaferVisionGui.exe" KeyPath="yes" ShortName="WAFERV2.EXE" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\WAFERVISIONGUI_EXE" />
+      </Component>
+      <Component Id="WAITFORSERVICE_EXE" Guid="{A88F1868-0BE5-4360-ACDE-11AC3392CC02}">
+        <File Id="WAITFORSERVICE_EXE" Name="waitforservice.exe" KeyPath="yes" ShortName="WAITFO1.EXE" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\WAITFORSERVICE_EXE" />
+      </Component>
+      <Component Id="WVVIEW_EXE" Guid="{289387F2-91A0-4A05-885C-0FB20460CF6E}">
+        <File Id="WVVIEW_EXE" Name="WVView.exe" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\WVVIEW_EXE" />
+      </Component>
+      <Component Id="WV_OPTDEF_DLL" Guid="{AAFCBC04-2CBB-4410-9E47-D11380DFEAE6}">
+        <File Id="WV_OPTDEF_DLL" Name="wv_optdef.dll" KeyPath="yes" ShortName="WV_OPT1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\WV_OPTDEF_DLL" />
+      </Component>
+      <Component Id="WV_QV_DLL" Guid="{7DAD9B6C-33A3-41CB-9131-745F926E7C8B}">
+        <File Id="WV_QV_DLL" Name="wv_QV.dll" KeyPath="yes" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\WV_QV_DLL" />
+      </Component>
+      <Component Id="WV_SYSMAN_DLL" Guid="{F21477D8-D820-4F74-B4B5-04D35ABCDAD9}">
+        <File Id="WV_SYSMAN_DLL" Name="wv_sysman.dll" KeyPath="yes" ShortName="WV_SYS1.DLL" Vital="no" DiskId="3" Source="WaferVisionWix\Src\File\WV_SYSMAN_DLL" />
+      </Component>
+    </ComponentGroup>
+
+    
+	</Fragment>
+</Wix>

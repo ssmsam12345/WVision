@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+
+    <Property Id="ALL_FRAGMANETS_REFS" Value="1"/>
+    
+    <PropertyRef Id="FILESEARCHES"/>
+    <PropertyRef Id="REGISTRYSEARCHES"/>
+    <PropertyRef Id="BINARIES"/>
+    <PropertyRef Id="COMPONENTS"/>
+    <PropertyRef Id="CUSTOMACTIONS"/>
+    <PropertyRef Id="INSTALLEXECUTESEQUENCE"/>
+    <PropertyRef Id="INSTALLUISEQUENCE"/>
+    <PropertyRef Id="CUSTOMMSITABLES"/>
+    <PropertyRef Id="DIALOGS"/>
+    <PropertyRef Id="DIRECTORIES"/>
+    <PropertyRef Id="FEATURES"/>
+    <PropertyRef Id="LAUNCHCONDITIONS"/>
+    <PropertyRef Id="PROPERTIES"/>
+    
+	</Fragment>
+</Wix>

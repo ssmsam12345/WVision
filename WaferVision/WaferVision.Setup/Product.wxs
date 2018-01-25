@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="{8ED04405-06EB-47C4-99F2-F132E46AC683}" Language="1033" Manufacturer="Applied Materials Inc." Name="WaferVision" UpgradeCode="{8ED04405-06EB-47c4-99F2-F132E46AC683}" Version="1.0.33.1">
+      <Package Compressed="yes" Description="WaferVision" InstallerVersion="500" Keywords="WaferVision,MSI,Installer" Languages="1033" Manufacturer="Applied Materials Inc." Platform="x86" />
+    
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+    <Media Id="2" Cabinet="RES.CAB" EmbedCab="yes" />
+    <Media Id="3" Cabinet="BIN.CAB" EmbedCab="yes" />
+
+		
+
+    <PropertyRef Id="ALL_FRAGMANETS_REFS"/>
+    <UIRef Id="WixUI_InstallDir"/>
+    <Property Id="WIXUI_INSTALLDIR" Value="AMAT"/>
+	</Product>
+
+	
+</Wix>

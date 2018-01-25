@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+
+    <Property Id="CUSTOMMSITABLES" Value="1"/>
+    
+    <CustomTable Id="AMAT_PROCESSES">
+      <Column Id="File" PrimaryKey="yes" Type="string" Width="255" />
+      <Row>
+        <Data Column="File">\imagever\imagever.exe</Data>
+      </Row>
+      <Row>
+        <Data Column="File">\amatpmon\bin\amatpmon.exe</Data>
+      </Row>
+      <Row>
+        <Data Column="File">explorer.exe</Data>
+      </Row>
+      <Row>
+        <Data Column="File">iexplore.exe</Data>
+      </Row>
+      <Row>
+        <Data Column="File">w3wp.exe</Data>
+      </Row>
+    </CustomTable>
+    
+    <CustomTable Id="CGA_ACCESS">
+      <Column Id="Object" PrimaryKey="yes" Type="string" Width="255" Nullable="yes" />
+      <Column Id="Access" Type="string" Width="255" Nullable="yes" />
+      <Row>
+        <Data Column="Object">[$WAFERVISION]</Data>
+        <Data Column="Access">RESTRICTED</Data>
+      </Row>
+      <Row>
+        <Data Column="Object">[$DATA]</Data>
+        <Data Column="Access">UNRESTRICTED</Data>
+      </Row>
+      <Row>
+        <Data Column="Object">[$SDATA]</Data>
+        <Data Column="Access">SPECIAL</Data>
+      </Row>
+    </CustomTable>
+    
+    <CustomTable Id="CGA_FE_BACKUP">
+      <Column Id="Folder" PrimaryKey="yes" Type="string" Width="255" Nullable="yes" />
+      <Row>
+        <Data Column="Folder">CGABridge</Data>
+      </Row>
+      <Row>
+        <Data Column="Folder">Shared</Data>
+      </Row>
+      <Row>
+        <Data Column="Folder">WWWRoot</Data>
+      </Row>
+      <Row>
+        <Data Column="Folder">[CGA_BASELINE_FOLDER]</Data>
+      </Row>
+    </CustomTable>
+    
+    <CustomTable Id="CGA_RT_BACKUP">
+      <Column Id="Folder" PrimaryKey="yes" Type="string" Width="255" Nullable="yes" />
+      <Row>
+        <Data Column="Folder">Shared</Data>
+      </Row>
+      <Row>
+        <Data Column="Folder">[CGA_BASELINE_FOLDER]</Data>
+      </Row>
+    </CustomTable>
+    
+    <CustomTable Id="CGA_TEMPORARY">
+      <Column Id="File" PrimaryKey="yes" Type="string" Width="255" Nullable="yes" />
+      <Row>
+        <Data Column="File">[$TEMP]</Data>
+      </Row>
+    </CustomTable>
+    
+	</Fragment>
+</Wix>

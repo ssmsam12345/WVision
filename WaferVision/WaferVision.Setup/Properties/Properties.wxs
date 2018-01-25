@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+
+    <Property Id="PROPERTIES" Value="1"/>
+    
+    <Property Id="InstallMode" Value="Typical" />
+    <Property Id="DATA" Value="C:\amat\WaferVision\Data\" Secure="yes" />
+    
+    <Property Id="CGA_INTERRUPT" Value="Yes" />
+    <Property Id="CGA_BACKUP_DATA" Value="0" />
+    <Property Id="IAgree" Value="No" />
+    <Property Id="CGA_AMATPATH" Value="[TARGETDIR][CGA_AMATFOLDER]\" />
+    <Property Id="WAFER_VISION_SERVER" Value="YES" />
+    <Property Id="ALLUSERS" Value="1" />
+    <Property Id="ARPHELPLINK" Value="http://www.microsoft.com/management" />
+    <Property Id="BuildType" Value="0:1:0:0" />
+    <Property Id="CGA_AMATFOLDER" Value="Amat" />
+    <Property Id="CGA_BACKUP_DSTPATH" Value="D:\DataBackup\" />
+    <Property Id="CGA_BASELINE_APPPATH" Value="[CGA_BASELINE_BINPATH][CGA_BASELINE_APP]" />
+    <Property Id="CGA_BASELINE_BINPATH" Value="[CGA_AMATPATH][CGA_BASELINE_FOLDER]\Bin\" />
+    <Property Id="CGA_FE_BACKUP_DSTPATH" Value="[CGA_BACKUP_DSTPATH]FE\[CGA_AMATFOLDER]\" />
+    <Property Id="CGA_FE_BACKUP_SRCPATH" Value="[CGA_AMATPATH]" />
+    <Property Id="CGA_REGROOT" Value="Applied Materials" />
+    <Property Id="CGA_RT_BACKUP_DSTPATH" Value="[CGA_BACKUP_DSTPATH]MF\[CGA_AMATFOLDER]\" />
+    <Property Id="CGA_RT_BACKUP_SRCPATH" Value="[CGA_AMATPATH]" />
+    <Property Id="CGA_VERSION_STRING" Value="A1.0_33" />
+    <Property Id="CompleteSetupIcon" Value="completi" />
+    <Property Id="ComponentDownload" Value="ftp://anonymous@microsoft.com/components/" />
+    <Property Id="RT_USER_LOGIN" Hidden="yes" />
+    <Property Id="CGA_XMPNOASSISTANT" Value="YES" />
+    <Property Id="CGA_XMPNOMEI" Value="YES" />
+    <Property Id="CGA_CHECK_FEATURES" Value="NO" />
+    
+	</Fragment>
+</Wix>

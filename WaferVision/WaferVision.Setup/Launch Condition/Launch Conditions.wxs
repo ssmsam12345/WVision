@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+
+    <Property Id="LAUNCHCONDITIONS" Value="1"/>
+    
+    <Condition Message="This is not WaferVision server. Installation will abort."><![CDATA[WAFER_VISION = "YES"]]></Condition>
+    <Condition Message="The [CGA_CURRENTBASELINE_NAME] baseline is found. Please uninstall it using Control Panel\AddRemove Programs before installing a new one.">1 OR Installed OR NOT CGA_CURRENTBASELINE_NAME</Condition>
+    <Condition Message="The index.php file is found under the [TARGETDIR][CGA_AMATFOLDER]\WWWROOT folder. Please uninstall all baselines from [TARGETDIR][CGA_AMATFOLDER] before installing a new one.">1 OR Installed OR NOT CGA_INDEXPHP_FOUND</Condition>
+	</Fragment>
+</Wix>

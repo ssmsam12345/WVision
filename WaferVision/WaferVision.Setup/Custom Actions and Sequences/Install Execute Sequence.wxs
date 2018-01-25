@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+
+    <Property Id="INSTALLEXECUTESEQUENCE" Value="1"/>
+    
+    <InstallExecuteSequence>
+      
+      <Custom Action="BASELINE_STARTUP_SECTION" Sequence="1" />
+      <Custom Action="SET_WAFER_VISION_SERVER1" Sequence="101" />
+      <Custom Action="WAFER_VISION_SERVERERROR1" Sequence="102">WAFER_VISION_SERVER="FALSE"</Custom>
+      <Custom Action="SET_BACKUP_FILES" Sequence="103">WAFER_VISION_SERVER</Custom>
+      <Custom Action="SET_CGA_CURRENTBASELINE" Sequence="104">NOT Installed AND NOT CGA_CURRENTBASELINE_NAME AND (CGA_INDEXPHP_FOUND OR CGA_INDEXHTML_FOUND)</Custom>
+      <Custom Action="SET_CGA_MAINT_DESC1" Sequence="106" />
+      <Custom Action="SET_CGA_MAINT_DESC2" Sequence="107">CGA_REPAIR</Custom>
+      <Custom Action="SET_CGA_REINSTALL" Sequence="108">REINSTALL AND CGA_REPAIR="FE"</Custom>
+      <Custom Action="READ_RT_USER_DATA" Sequence="120">NOT CGA_RT_USER</Custom>
+      <Custom Action="CGAINST_CHECKRT" Sequence="901" />
+      <Custom Action="CGAINST_READ_SMTP_PARAM" Sequence="902">NOT Installed OR REINSTALL</Custom>
+      <Custom Action="BASELINE_INIT_SECTION" Sequence="1001" />
+      <Custom Action="SET_CGA_BASELINE_NAME" Sequence="1002" />
+      <Custom Action="SET_CGA_BASELINE_FOLDER" Sequence="1003" />
+      <Custom Action="SET_CGA_BASELINE_APP" Sequence="1004" />
+      <Custom Action="SET_CGA_CFGFILE" Sequence="1005" />
+      <Custom Action="FIND_OLD_VERSIONS" Sequence="1006" />
+      <Custom Action="CHECK_FEATURES" Sequence="1080">CGA_CHECK_FEATURES &lt;&gt; "NO"</Custom>
+      <Custom Action="CHECK_FEONLYVERSION" Sequence="1081">CGA_FEONLY = "YES"</Custom>
+      <Custom Action="READ_TOOLID" Sequence="1082">NOT CGA_TOOL_ID</Custom>
+      <Custom Action="CGAINST_ISADMIN" Sequence="1201">NOT Installed</Custom>
+      <Custom Action="CGAINST_SELF_UNREGISTRATION" Sequence="1501">Installed OR REINSTALL</Custom>
+      <Custom Action="EXPAND_CGA_PROPS" Sequence="1502" />
+      <Custom Action="BASELINE_PREINSTALL_SECTION" Sequence="1503" />
+      <Custom Action="BACKUP_PREV_VERSION" Sequence="1504" />
+      <Custom Action="CREATE_SHUTDOWN_TASK" Sequence="1505">RT_SHUTDOWN_CMD</Custom>
+      <Custom Action="STOP_RT_PROCESS" Sequence="1506">RT_SHUTDOWN_CMD</Custom>
+      <Custom Action="PREPARE_RT_INSTALL" Sequence="1507" />
+      <Custom Action="SAVE_LAST_VERSION" Sequence="1508">NOT Installed</Custom>
+      <Custom Action="BASELINE_NESTEDINSTALL_SECTION" Sequence="6550" />
+      <Custom Action="UPDATE_IIS" Sequence="6551">Not (VersionNT = 601 and MsiNTProductType = 1)</Custom>
+      <Custom Action="UPDATE_IIS_FTP" Sequence="6552">NOT Installed AND VersionNT &gt; 501</Custom>
+      <Custom Action="CGAINST_GRANTACCESS" Sequence="6601">(NOT Installed OR REINSTALL) AND (NOT LASTBASELINE_VER)</Custom>
+      <Custom Action="CGAINST_SELF_REGISTRATION" Sequence="6602">NOT Installed OR REINSTALL</Custom>
+      <Custom Action="BASELINE_POSTINSTALL_SECTION" Sequence="6603" />
+      <Custom Action="RESTORE_OLD_VERSION" Sequence="6604" />
+      <Custom Action="SAVE_TOOLID" Sequence="6605">CGA_TOOL_ID</Custom>
+      <Custom Action="COMPLETE_RT_INSTALL" Sequence="6606">CGA_FEONLY &lt;&gt; "YES"</Custom>
+      <Custom Action="COMPLETE_FEONLY_INSTALL" Sequence="6607">CGA_FEONLY = "YES"</Custom>
+      <Custom Action="BASELINE_CLEANUP_SECTION" Sequence="6650" />
+      <Custom Action="CGAINST_CHANGEFILETIME" Sequence="6701">NOT Installed</Custom>
+      <Custom Action="CGAINST_WRITE_SMTP_PARAM" Sequence="6702">NOT Installed OR REINSTALL</Custom>
+      <Custom Action="CGAINST_BEFORESHUTDOWN" Sequence="6703" />
+
+    </InstallExecuteSequence>
+    
+	</Fragment>
+</Wix>

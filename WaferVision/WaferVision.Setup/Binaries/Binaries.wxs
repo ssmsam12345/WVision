@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+
+    <Property Id="BINARIES" Value="1"/>
+    
+    <Binary Id="New" SourceFile="..\Binary\New.ibd" />
+    <Binary Id="Up" SourceFile="WaferVisionWix\Src\Binary\Up.ibd" />
+    <Binary Id="bannrbmp" SourceFile="WaferVisionWix\Src\Binary\bannrbmp.ibd" />
+    <Binary Id="completi" SourceFile="WaferVisionWix\Src\Binary\completi.ibd" />
+    <Binary Id="custicon" SourceFile="WaferVisionWix\Src\Binary\custicon.ibd" />
+    <Binary Id="dlgbmp" SourceFile="WaferVisionWix\Src\Binary\dlgbmp.ibd" />
+    <Binary Id="exclamic" SourceFile="WaferVisionWix\Src\Binary\exclamic.ibd" />
+    <Binary Id="info" SourceFile="WaferVisionWix\Src\Binary\info.ibd" />
+    <Binary Id="insticon" SourceFile="WaferVisionWix\Src\Binary\insticon.ibd" />
+    <Binary Id="removico" SourceFile="WaferVisionWix\Src\Binary\removico.ibd" />
+    <Binary Id="repairic" SourceFile="WaferVisionWix\Src\Binary\repairic.ibd" />
+    <Binary Id="WAFER_VISION_SERVERDLL" SourceFile="WaferVisionWix\Src\Binary\WAFER_VISION_SERVERDLL.ibd" />
+    <Binary Id="BACKUP_FILEDLL" SourceFile="WaferVisionWix\Src\Binary\BACKUP_FILEDLL.ibd" />
+    <Binary Id="CGAINST_CGAISHLP" SourceFile="WaferVisionWix\Src\Binary\CGAINST_CGAISHLP.ibd" />
+    <Binary Id="CGAINST_DEPLOYCA" SourceFile="WaferVisionWix\Src\Binary\CGAINST_DEPLOYCA.ibd" />
+    <Binary Id="CGAINST_OSASHTDN_CE" SourceFile="WaferVisionWix\Src\Binary\CGAINST_OSASHTDN_CE.ibd" />
+    
+	</Fragment>
+</Wix>

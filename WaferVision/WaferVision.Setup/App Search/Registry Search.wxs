@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+
+    <Property Id="REGISTRYSEARCHES" Value="1"/>
+    
+    <Property Id="WAFER_VISION">
+      <RegistrySearch Id="WaferVisionEnv" Root="HKLM" Key="SYSTEM\CurrentControlSet\Control\Session Manager\Environment" Name="WAFER_VISION_SERVER" Type="raw"/>
+    </Property>
+
+    <Property Id="CGA_HRTS_IP">
+      <RegistrySearch Id="CGA_HRTSIP_SIG" Root="HKLM" Key="SOFTWARE\Applied Materials\Current Baseline" Name="HRTS_IP" Type="raw" />
+    </Property>
+    <Property Id="LASTBASELINE_VER">
+      <RegistrySearch Id="LASTBASELINE_VER_SIG" Root="HKLM" Key="SOFTWARE\Applied Materials\Last Baseline" Name="Version" Type="raw" />
+    </Property>
+    <Property Id="CGA_EDI_UNINST">
+      <RegistrySearch Id="CGA_EDIUNINST_SIG" Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{FDCAB135-0077-45E8-AE76-3B4814C39F6B}" Name="UninstallString" Type="raw" />
+    </Property>
+    <Property Id="CGA_INDEXHTML_FOUND">
+      <DirectorySearch Id="CGA_INDEXHTML_SIG" Path="[TARGETDIR][CGA_AMATFOLDER]\WWWROOT" Depth="0">
+        <FileSearch Id="CGA_INDEXHTML_SIG" Name="index.html" />
+      </DirectorySearch>
+    </Property>
+    <Property Id="CGA_REG_TOOLID">
+      <RegistrySearch Id="CGA_TOOLID_SIG" Root="HKLM" Key="SOFTWARE\Applied Materials\Last Baseline" Name="ToolID" Type="raw" />
+    </Property>
+    <Property Id="CGA_EDI_DISPNAME">
+      <RegistrySearch Id="CGA_EDIDISPNAME_SIG" Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{FDCAB135-0077-45E8-AE76-3B4814C39F6B}" Name="DisplayName" Type="raw" />
+    </Property>
+    <Property Id="CGA_CURRENTBASELINE_NAME">
+      <RegistrySearch Id="CGA_CURRENTBASELINE_SIG" Root="HKLM" Key="SOFTWARE\Applied Materials\Current Baseline" Type="raw" />
+    </Property>
+    
+	</Fragment>
+</Wix>

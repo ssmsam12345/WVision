@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+
+    <Property Id="DIALOGS" Value="1"/>
+    <UI>
+
+      <Dialog Id="AutologonDlg" X="50" Y="50" Width="370" Height="270" Title="[ProductName] [Setup]" NoMinimize="yes">
+        <Control Id="CheckBox" Type="CheckBox" X="25" Y="85" Width="220" Height="18" Text="Configure Auto Logon using following account:" TabSkip="no" Property='CHECKBOXPROPERTY' CheckBoxValue= '1'/>
+        <Control Id="UserLab" Type="Text" X="25" Y="105" Width="90" Height="15" Text="User name:" TabSkip="no" Transparent="yes" NoPrefix="yes" />
+        <Control Id="User" Type="Edit" X="140" Y="105" Width="220" Height="18" Property="CGA_AMATUSER" TabSkip="no" />
+        <Control Id="PasswordLab" Type="Text" X="25" Y="125" Width="90" Height="15" Text="Password:" TabSkip="no" Transparent="yes" NoPrefix="yes" />
+        <Control Id="Password" Type="Edit" X="140" Y="125" Width="220" Height="18" Property="CGA_AMATPASSWORD" TabSkip="no" Password="yes" />
+        <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="[ButtonText_Back]" TabSkip="no">
+          <Publish Property="CGA_RT_CHECKED" Value="0">CGA_RT_CHECKED = "1"</Publish>
+          <Publish Event="NewDialog" Value="RTAccountDlg">CGA_RT_REQUEST AND CGA_RT_CHECKED &lt;&gt; "1"</Publish>
+          <Publish Event="NewDialog" Value="FeaturesIniDlg">NOT CGA_RT_REQUEST AND CGA_SHOW_FEATURESDIALOG </Publish>
+          <Publish Event="NewDialog" Value="WelcomeDlg">NOT CGA_RT_REQUEST AND NOT CGA_SHOW_FEATURESDIALOG</Publish>
+        </Control>
+        <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Text="[ButtonText_Next]" TabSkip="no" Default="yes">
+          <Publish Event="NewDialog" Value="TCPPortDlg">1</Publish>
+        </Control>
+        <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Text="[ButtonText_Cancel]" TabSkip="no" Cancel="yes">
+          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+        </Control>
+        <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="374" Height="44" Text="[BannerBitmap]" TabSkip="no" Disabled="yes" />
+        <Control Id="Description" Type="Text" X="25" Y="21" Width="280" Height="30" Text="The account will be created if necessary. A password for the specified user account will be changed." TabSkip="yes" Transparent="yes" NoPrefix="yes" />
+        <Control Id="Title" Type="Text" X="15" Y="6" Width="280" Height="15" Text="[DlgTitleFont]Specify account Windows NT Auto-Logon feature." TabSkip="yes" Transparent="yes" NoPrefix="yes" />
+        <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="374" Height="0" TabSkip="yes" Disabled="yes" />
+        <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="374" Height="0" TabSkip="yes" Disabled="yes" />
+      </Dialog>
+
+      <Dialog Id="BaselineFoundDlg" X="50" Y="50" Width="370" Height="270" Title="[ProductName] [Setup]" NoMinimize="yes">
+        <Control Id="Buttons" Type="RadioButtonGroup" X="20" Y="60" Width="330" Height="110" Property="CGA_INTERRUPT" TabSkip="no" />
+        <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="[ButtonText_Back]" TabSkip="no">
+          <Publish Event="NewDialog" Value="FeaturesIniDlg">CGA_SHOW_FEATURESDIALOG</Publish>
+          <Publish Event="NewDialog" Value="WelcomeDlg">NOT CGA_SHOW_FEATURESDIALOG</Publish>
+        </Control>
+        <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Text="[ButtonText_Next]" TabSkip="no" Default="yes">
+          <Publish Event="EndDialog" Value="Exit">CGA_INTERRUPT = "Yes"</Publish>
+          <Publish Event="NewDialog" Value="RTAccountDlg">CGA_INTERRUPT &lt;&gt; "Yes" AND CGA_RT_REQUEST</Publish>
+          <Publish Event="NewDialog" Value="AutologonDlg">CGA_INTERRUPT &lt;&gt; "Yes" AND NOT CGA_RT_REQUEST AND CGA_SETUPTYPE = "Production"</Publish>
+          <Publish Event="NewDialog" Value="TCPPortDlg">CGA_INTERRUPT &lt;&gt; "Yes" AND NOT CGA_RT_REQUEST AND CGA_SETUPTYPE &lt;&gt; "Production"</Publish>
+        </Control>
+        <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Text="[ButtonText_Cancel]" TabSkip="no" Cancel="yes" Disabled="yes">
+          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+        </Control>
+        <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="374" Height="44" Text="[BannerBitmap]" TabSkip="no" Disabled="yes" />
+        <Control Id="Description" Type="Text" X="20" Y="23" Width="300" Height="30" Text="Installation of a baseline on top of another one is not supported." TabSkip="yes" Transparent="yes" NoPrefix="yes" />
+        <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Text="[DlgTitleFont][CGA_CURRENTBASELINE_NAME] baseline is found" TabSkip="yes" Transparent="yes" NoPrefix="yes" />
+        <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="374" Height="0" TabSkip="yes" Disabled="yes" />
+        <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="374" Height="0" TabSkip="yes" Disabled="yes" />
+      </Dialog>
+
+      <Dialog Id="ChooseBackupDlg" X="50" Y="50" Width="370" Height="270" Title="[ProductName] [Setup]" NoMinimize="yes">
+        <Control Id="BackupList" Type="ListView" X="25" Y="60" Width="320" Height="140" Property="CGA_BACKUP_DATA" TabSkip="no" Sunken="yes" Sorted="yes" />
+        <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="[ButtonText_Back]" TabSkip="no">
+          <Publish Event="NewDialog" Value="ToolIdDlg">CGA_SHOW_IDDIALOG</Publish>
+          <Publish Event="NewDialog" Value="TCPPortDlg">NOT CGA_SHOW_IDDIALOG</Publish>
+        </Control>
+        <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Text="[ButtonText_Next]" TabSkip="no" Default="yes">
+          <Publish Event="NewDialog" Value="PHPServerDlg">1</Publish>
+        </Control>
+        <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Text="[ButtonText_Cancel]" TabSkip="no" Cancel="yes">
+          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+        </Control>
+        <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="374" Height="44" Text="[BannerBitmap]" TabSkip="no" Disabled="yes" />
+        <Control Id="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Text="Select one of the available configurations." TabSkip="yes" Transparent="yes" NoPrefix="yes" />
+        <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Text="[DlgTitleFont]You are installing version [CGA_VERSION_STRING]" TabSkip="yes" Transparent="yes" NoPrefix="yes" />
+        <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="374" Height="0" TabSkip="yes" Disabled="yes" />
+        <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="374" Height="0" TabSkip="yes" Disabled="yes" />
+        <Control Id="Warning" Type="Text" X="25" Y="207" Width="320" Height="20" Text="Warning: The selected version you have chosen is not the most recent. Changes made to configuration, recipes, and sequences since that selected version will be overwritten." TabSkip="yes" Hidden="yes">
+          <Condition Action="hide">CGA_BACKUP_DATA = 0</Condition>
+          <Condition Action="show">CGA_BACKUP_DATA &gt; 0</Condition>
+        </Control>
+      </Dialog>
+
+      <Dialog Id="FeaturesIniDlg" X="50" Y="50" Width="370" Height="270" Title="[ProductName] [Setup]" NoMinimize="yes">
+        <Control Id="Browse" Type="PushButton" X="304" Y="105" Width="56" Height="17" Text="[ButtonText_Browse]" TabSkip="no">
+          <Publish Event="DoAction" Value="BROWSE_FEATURES">1</Publish>
+          <Publish Property="CGA_FEATURESLOCATION" Value="[CGA_FEATURESLOCATION]">1</Publish>
+        </Control>
+        <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="[ButtonText_Back]" TabSkip="no">
+          <Publish Event="NewDialog" Value="WelcomeDlg" />
+        </Control>
+        <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Text="[ButtonText_Next]" TabSkip="no" Default="yes">
+          <Publish Event="EndDialog" Value="Exit">CGA_SETUPTYPE = "Production" AND (NOT CGA_FEATURESLOCATION OR CGA_FEATURESLOCATION = "")</Publish>
+          <Publish Event="NewDialog" Value="RTAccountDlg">CGA_RT_REQUEST AND (CGA_FEATURESLOCATION &lt;&gt; "" OR CGA_SETUPTYPE &lt;&gt; "Production")</Publish>
+          <Publish Event="NewDialog" Value="AutologonDlg">NOT CGA_RT_REQUEST AND CGA_SETUPTYPE = "Production" AND CGA_FEATURESLOCATION &lt;&gt; ""</Publish>
+          <Publish Event="NewDialog" Value="TCPPortDlg">NOT CGA_RT_REQUEST AND (CGA_FEATURESLOCATION &lt;&gt; "" OR CGA_SETUPTYPE &lt;&gt; "Production")</Publish>
+        </Control>
+        <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Text="[ButtonText_Cancel]" TabSkip="no" Cancel="yes">
+          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+        </Control>
+        <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="374" Height="44" Text="[BannerBitmap]" TabSkip="no" Disabled="yes" />
+        <Control Id="Please" Type="Text" X="25" Y="60" Width="320" Height="17" Text="[DlgTitleFont]Please refer to software release notes." TabSkip="no" />
+        <Control Id="Advise" Type="Text" X="25" Y="85" Width="320" Height="17" Text="[CGA_FEATURESDESCRIPTION]" TabSkip="no" />
+        <Control Id="Path" Type="Edit" X="25" Y="105" Width="270" Height="17" Property="CGA_FEATURESLOCATION" TabSkip="no" Disabled="yes" Sunken="yes" />
+        <Control Id="Description" Type="Text" X="20" Y="18" Width="300" Height="30" Text="[CGA_FEATURESERROR]" TabSkip="yes" Transparent="yes" NoPrefix="yes" />
+        <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Text="[DlgTitleFont]Features validation failed" TabSkip="yes" Transparent="yes" NoPrefix="yes" />
+        <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="374" Height="0" TabSkip="yes" Disabled="yes" />
+        <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="374" Height="0" TabSkip="yes" Disabled="yes" />
+      </Dialog>
+
+      <Dialog Id="PHPServerDlg" X="50" Y="50" Width="370" Height="270" Title="[ProductName] [Setup]" NoMinimize="yes">
+        <Control Id="Host" Type="Edit" X="120" Y="85" Width="220" Height="18" Property="CGA_SMTPHOST" TabSkip="no" />
+        <Control Id="PortLab" Type="Text" X="25" Y="105" Width="90" Height="15" Text="Port:" TabSkip="no" Transparent="yes" NoPrefix="yes" />
+        <Control Id="Port" Type="Edit" X="120" Y="105" Width="220" Height="18" Property="CGA_SMTPPORT" TabSkip="no" />
+        <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="[ButtonText_Back]" TabSkip="no">
+          <Publish Event="NewDialog" Value="ChooseBackupDlg">CGA_BACKUPS_FOUND = 1</Publish>
+          <Publish Event="NewDialog" Value="ToolIdDlg">CGA_BACKUPS_FOUND &lt;&gt; 1 AND CGA_SHOW_IDDIALOG</Publish>
+          <Publish Event="NewDialog" Value="TCPPortDlg">CGA_BACKUPS_FOUND &lt;&gt; 1 AND NOT CGA_SHOW_IDDIALOG</Publish>
+        </Control>
+        <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Text="[ButtonText_Next]" TabSkip="no" Default="yes">
+          <Publish Event="NewDialog" Value="CustomizeDlg">1</Publish>
+        </Control>
+        <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Text="[ButtonText_Cancel]" TabSkip="no" Cancel="yes">
+          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+        </Control>
+        <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="374" Height="44" Text="[BannerBitmap]" TabSkip="no" Disabled="yes" />
+        <Control Id="HostLab" Type="Text" X="25" Y="85" Width="90" Height="15" Text="Server name:" TabSkip="no" Transparent="yes" NoPrefix="yes" />
+        <Control Id="Description" Type="Text" X="25" Y="23" Width="300" Height="15" Text="Specify SMTP server name and port." TabSkip="yes" Transparent="yes" NoPrefix="yes" />
+        <Control Id="Title" Type="Text" X="15" Y="6" Width="280" Height="15" Text="[DlgTitleFont]User notification SMTP server" TabSkip="yes" Transparent="yes" NoPrefix="yes" />
+        <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="374" Height="0" TabSkip="yes" Disabled="yes" />
+        <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="374" Height="0" TabSkip="yes" Disabled="yes" />
+      </Dialog>
+
+      <Dialog Id="RTAccountDlg" X="50" Y="50" Width="370" Height="270" Title="[ProductName] [Setup]" NoMinimize="yes">
+        <Control Id="RTHost" Type="Edit" X="120" Y="85" Width="220" Height="18" Property="CGA_RT_HOST" TabSkip="no" />
+        <Control Id="RTUserLab" Type="Text" X="25" Y="105" Width="90" Height="15" Text="RT User name:" TabSkip="no" Transparent="yes" NoPrefix="yes" />
+        <Control Id="RTUser" Type="Edit" X="120" Y="105" Width="220" Height="18" Property="CGA_RT_USER" TabSkip="no" />
+        <Control Id="RTPasswordLab" Type="Text" X="25" Y="125" Width="90" Height="15" Text="RT Password:" TabSkip="no" Transparent="yes" NoPrefix="yes" />
+        <Control Id="RTPassword" Type="Edit" X="120" Y="125" Width="220" Height="18" Property="CGA_RT_PASSWORD" TabSkip="no" Password="yes" />
+        <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="[ButtonText_Back]" TabSkip="no">
+          <Publish Event="NewDialog" Value="FeaturesIniDlg">CGA_SHOW_FEATURESDIALOG</Publish>
+          <Publish Event="NewDialog" Value="WelcomeDlg">NOT CGA_SHOW_FEATURESDIALOG</Publish>
+        </Control>
+        <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Text="[ButtonText_Next]" TabSkip="no" Default="yes">
+          <Publish Event="DoAction" Value="CGAINST_CHECKRT">CGA_RT_CHECKED &lt;&gt; "1"</Publish>
+          <Publish Event="NewDialog" Value="AutologonDlg">CGA_RT_CHECKED = "1" AND CGA_SETUPTYPE = "Production"</Publish>
+          <Publish Event="NewDialog" Value="TCPPortDlg">CGA_RT_CHECKED = "1" AND CGA_SETUPTYPE &lt;&gt; "Production"</Publish>
+        </Control>
+        <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Text="[ButtonText_Cancel]" TabSkip="no" Cancel="yes">
+          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+        </Control>
+        <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="374" Height="44" Text="[BannerBitmap]" TabSkip="no" Disabled="yes" />
+        <Control Id="RTHostLab" Type="Text" X="25" Y="85" Width="90" Height="15" Text="RT Computer Name:" TabSkip="no" Transparent="yes" NoPrefix="yes" />
+        <Control Id="Description" Type="Text" X="25" Y="23" Width="300" Height="15" Text="Specify Real Time Controller connection parameters." TabSkip="yes" Transparent="yes" NoPrefix="yes" />
+        <Control Id="Title" Type="Text" X="15" Y="6" Width="280" Height="15" Text="[DlgTitleFont]Enter information" TabSkip="yes" Transparent="yes" NoPrefix="yes" />
+        <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="374" Height="0" TabSkip="yes" Disabled="yes" />
+        <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="374" Height="0" TabSkip="yes" Disabled="yes" />
+      </Dialog>
+
+      <Dialog Id="TCPPortDlg" X="50" Y="50" Width="370" Height="270" Title="[ProductName] [Setup]" NoMinimize="yes">
+        <Control Id="TCPPort" Type="Edit" X="100" Y="85" Width="220" Height="18" Property="CGA_TCPPORT" TabSkip="no" />
+        <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="[ButtonText_Back]" TabSkip="no">
+          <Publish Property="CGA_RT_CHECKED" Value="0">CGA_RT_CHECKED = "1"</Publish>
+          <Publish Event="NewDialog" Value="AutologonDlg">CGA_RT_CHECKED &lt;&gt; "1" AND CGA_SETUPTYPE = "Production"</Publish>
+          <Publish Event="NewDialog" Value="RTAccountDlg">CGA_RT_CHECKED &lt;&gt; "1" AND CGA_SETUPTYPE &lt;&gt; "Production" AND CGA_RT_REQUEST</Publish>
+          <Publish Event="NewDialog" Value="FeaturesIniDlg">CGA_RT_CHECKED &lt;&gt; "1" AND CGA_SETUPTYPE &lt;&gt; "Production" AND NOT CGA_RT_REQUEST AND CGA_SHOW_FEATURESDIALOG</Publish>
+          <Publish Event="NewDialog" Value="WelcomeDlg">CGA_SETUPTYPE &lt;&gt; "Production" AND NOT CGA_RT_REQUEST AND NOT CGA_SHOW_FEATURESDIALOG</Publish>
+        </Control>
+        <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Text="[ButtonText_Next]" TabSkip="no" Default="yes">
+          <Publish Event="NewDialog" Value="ToolIdDlg">CGA_TCPPORT AND CGA_SHOW_IDDIALOG</Publish>
+          <Publish Event="NewDialog" Value="ChooseBackupDlg">CGA_TCPPORT AND NOT CGA_SHOW_IDDIALOG AND CGA_BACKUPS_FOUND = 1</Publish>
+          <Publish Event="NewDialog" Value="PHPServerDlg">CGA_TCPPORT AND NOT CGA_SHOW_IDDIALOG AND CGA_BACKUPS_FOUND &lt;&gt; 1</Publish>
+        </Control>
+        <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Text="[ButtonText_Cancel]" TabSkip="no" Cancel="yes">
+          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+        </Control>
+        <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="374" Height="44" Text="[BannerBitmap]" TabSkip="no" Disabled="yes" />
+        <Control Id="PortLab" Type="Text" X="25" Y="85" Width="70" Height="15" Text="TCP Port:" TabSkip="no" Transparent="yes" NoPrefix="yes" />
+        <Control Id="Description" Type="Text" X="25" Y="23" Width="300" Height="30" Text="The TCP port number is used for the baseline GUI." TabSkip="yes" Transparent="yes" NoPrefix="yes" />
+        <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Text="[DlgTitleFont]Specify the TCP port" TabSkip="yes" Transparent="yes" NoPrefix="yes" />
+        <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="374" Height="0" TabSkip="yes" Disabled="yes" />
+        <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="374" Height="0" TabSkip="yes" Disabled="yes" />
+      </Dialog>
+
+      <Dialog Id="ToolIdDlg" X="50" Y="50" Width="370" Height="270" Title="[ProductName] [Setup]" NoMinimize="yes">
+        <Control Id="ToolID" Type="Edit" X="100" Y="85" Width="220" Height="18" Property="CGA_TOOL_ID" TabSkip="no" />
+        <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="[ButtonText_Back]" TabSkip="no">
+          <Publish Event="NewDialog" Value="TCPPortDlg">1</Publish>
+        </Control>
+        <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Text="[ButtonText_Next]" TabSkip="no" Default="yes">
+          <Publish Event="NewDialog" Value="ChooseBackupDlg">CGA_TOOL_ID AND CGA_BACKUPS_FOUND = 1</Publish>
+          <Publish Event="NewDialog" Value="PHPServerDlg">CGA_TOOL_ID AND CGA_BACKUPS_FOUND &lt;&gt; 1</Publish>
+        </Control>
+        <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Text="[ButtonText_Cancel]" TabSkip="no" Cancel="yes">
+          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+        </Control>
+        <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="374" Height="44" Text="[BannerBitmap]" TabSkip="no" Disabled="yes" />
+        <Control Id="ToolLab" Type="Text" X="25" Y="85" Width="70" Height="15" Text="Tool ID:" TabSkip="no" Transparent="yes" NoPrefix="yes" />
+        <Control Id="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Text="Enter the tool identifier." TabSkip="yes" Transparent="yes" NoPrefix="yes" />
+        <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Text="[DlgTitleFont]Specify the ToolID" TabSkip="yes" Transparent="yes" NoPrefix="yes" />
+        <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="374" Height="0" TabSkip="yes" Disabled="yes" />
+        <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="374" Height="0" TabSkip="yes" Disabled="yes" />
+      </Dialog>
+
+      <ListBox Property="CGA_COMPONENTS">
+        <ListItem Value="0" Text="CGA: [CGA_FRAMEWORK_VERSION]" />
+      </ListBox>
+      <RadioButtonGroup Property="CGA_INTERRUPT">
+        <RadioButton Height="50" Text="{\DlgFont8}(Recommended) Abort this installation to perform manual or automated uninstall. If previous is an InstallShield installation, manual uninstall is required - at a minimum delete [CGA_AMATPATH]WWWRoot and [CGA_AMATPATH]CGABridge\Bin. If previous is a MSI installation, uninstall it using Add/Remove control panel applet." Value="Yes" Width="300" X="5" Y="0" />
+        <RadioButton Height="50" Text="{\DlgFont8}Install [CGA_BASELINE_NAME] on top of the existing baseline installation. Unsupported." Value="No" Width="300" X="5" Y="60" />
+      </RadioButtonGroup>
+      <!--<RadioButtonGroup Property="CGA_REPAIR">
+                <RadioButton Height="10" Text="{\DlgFont8} Repair front end components only (no RT reboot required)" Value="FE" Width="340" X="0" Y="0" />
+                <RadioButton Height="10" Text="{\DlgFont8} Repair all components (requires RT reboot)" Value="ALL" Width="340" X="0" Y="40" />
+            </RadioButtonGroup>-->
+      <RadioButtonGroup Property="IAgree">
+        <RadioButton Height="15" Text="{\DlgFont8}I &amp;accept the terms in the License Agreement" Value="Yes" Width="250" X="5" Y="0" />
+        <RadioButton Height="15" Text="{\DlgFont8}I &amp;do not accept the terms in the License Agreement" Value="No" Width="250" X="5" Y="20" />
+      </RadioButtonGroup>
+      
+    </UI>
+    
+	</Fragment>
+</Wix>

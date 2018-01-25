@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+  
+    <Property Id="DIRECTORIES" Value="1"/>  
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="AMAT" Name="Amat" SourceName=".">
+        <Directory Id="HDR" Name="HDR" SourceName=".">
+          <Directory Id="RES" Name="res" SourceName="."/>
+        </Directory>
+        <Directory Id="WAFERVISION" Name="WaferVision" ShortName="WAFERV1" SourceName=".">
+        <Directory Id="BIN" Name="Bin" SourceName="."/>
+          <Directory Id="DATA" Name="Data" SourceName=".">
+            <Directory Id="CACHE" Name="Cache" SourceName="."/>
+            <Directory Id="DEBUGDATA" Name="DebugData" ShortName="DEBUGD1" SourceName="."/>
+          </Directory>
+          <Directory Id="SDATA" Name="SData" SourceName="."/>
+        </Directory>
+        <Directory Id="SHARED" Name="Shared" SourceName=".">
+          <Component Id="SHARED" Guid="{B888DB19-8D36-43DA-902A-D54ED7CB7783}" KeyPath="yes">
+            <CreateFolder Directory="SHARED" />
+          </Component>
+        </Directory>
+        <Directory Id="TEMP" Name="temp" SourceName=".">
+          <Component Id="TEMP" Guid="{2763C0AD-B80D-45F9-B023-FC540E7452B7}" KeyPath="yes" Permanent="yes">
+            <CreateFolder Directory="TEMP" />
+          </Component>
+        </Directory>
+      </Directory>
+
+    </Directory>
+    
+	</Fragment>
+</Wix>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+
+    <Property Id="INSTALLUISEQUENCE" Value="1"/>
+    
+    <InstallUISequence>
+      
+      <Custom Action="BASELINE_STARTUP_SECTION" Sequence="1" />
+      <Custom Action="SET_WAFER_VISION_SERVER1" Sequence="101" />
+      <Custom Action="WAFER_VISION_SERVERERROR1" Sequence="102">WAFER_VISION_SERVER="FALSE"</Custom>
+      <Custom Action="SET_BACKUP_FILES" Sequence="103">WAFER_VISION_SERVER</Custom>
+      <Custom Action="SET_CGA_CURRENTBASELINE" Sequence="104">NOT Installed AND NOT CGA_CURRENTBASELINE_NAME AND (CGA_INDEXPHP_FOUND OR CGA_INDEXHTML_FOUND)</Custom>
+      <Custom Action="SET_CGA_SHOW_IDDIALOG" Sequence="105">NOT Installed AND NOT CGA_TOOL_ID</Custom>
+      <Custom Action="SET_PROGRESS1" Sequence="106">Installed AND NOT CGA_REPAIR</Custom>
+      <Custom Action="SET_PROGRESS2" Sequence="107">Installed AND NOT CGA_REPAIR</Custom>
+      <Custom Action="SET_PROGRESS3" Sequence="108">Installed AND NOT CGA_REPAIR</Custom>
+      <Custom Action="SET_CGA_MAINT_DESC1" Sequence="109" />
+      <Custom Action="SET_CGA_MAINT_DESC2" Sequence="110">CGA_REPAIR</Custom>
+      <Custom Action="READ_RT_USER_DATA" Sequence="120">NOT CGA_RT_USER</Custom>
+      <Custom Action="CGAINST_CHECKRT" Sequence="901" />
+      <Custom Action="CGAINST_READ_SMTP_PARAM" Sequence="902">NOT Installed OR REINSTALL</Custom>
+      <Custom Action="SET_CGA_ADDLOCAL" Sequence="998">CGA_SETUPTYPE &lt;&gt; "Production"</Custom>
+      <Custom Action="BASELINE_INIT_SECTION" Sequence="1001" />
+      <Custom Action="SET_CGA_BASELINE_NAME" Sequence="1002" />
+      <Custom Action="SET_CGA_BASELINE_FOLDER" Sequence="1003" />
+      <Custom Action="SET_CGA_BASELINE_APP" Sequence="1004" />
+      <Custom Action="SET_CGA_CFGFILE" Sequence="1005" />
+      <Custom Action="FIND_OLD_VERSIONS" Sequence="1006" />
+      <Custom Action="CHECK_FEATURES" Sequence="1080">CGA_CHECK_FEATURES &lt;&gt; "NO"</Custom>
+      <Custom Action="SET_CGA_SHOW_FEATURESDIALOG" Sequence="1081">NOT Installed AND CGA_FEATURESERROR AND CGA_FEATURESERROR &lt;&gt; ""</Custom>
+      <Custom Action="READ_TOOLID" Sequence="1082">NOT CGA_TOOL_ID</Custom>
+      <Custom Action="CGAINST_ISADMIN" Sequence="1201">NOT Installed</Custom>
+
+    </InstallUISequence>
+	</Fragment>
+</Wix>
